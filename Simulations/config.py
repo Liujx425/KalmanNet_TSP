@@ -59,5 +59,19 @@ def general_settings():
     parser.add_argument('--out_mult_KNet', type=int, default=40, metavar='out_mult_KNet',
                         help='output dimension multiplier for KNet')
 
+    ### LGA-KalmanNet settings
+    parser.add_argument('--lga_window', type=int, default=5, metavar='lga_window',
+                        help='observation buffer window size for LGA')
+    parser.add_argument('--lga_d_model', type=int, default=16, metavar='lga_d_model',
+                        help='LGA embedding dimension')
+    parser.add_argument('--lga_n_heads', type=int, default=2, metavar='lga_n_heads',
+                        help='number of LGA attention heads')
+    parser.add_argument('--lga_d_G', type=int, default=32, metavar='lga_d_G',
+                        help='LGA metric embedding dimension')
+    parser.add_argument('--lga_eps', type=float, default=1e-2, metavar='lga_eps',
+                        help='LGA numerical stability parameter')
+    parser.add_argument('--lga_weight', type=float, default=0.1, metavar='lga_weight',
+                        help='weight for LGA metric learning loss')
+
     args = parser.parse_args()
     return args

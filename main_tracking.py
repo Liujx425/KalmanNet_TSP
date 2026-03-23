@@ -159,7 +159,7 @@ loss_obs = nn.MSELoss(reduction='mean')
 MSE_obs_linear_arr = torch.empty(args.N_T)
 for i in range(args.N_T):
     # Compare H^+ @ y with x (pseudo-inverse reconstruction)
-    MSE_obs_linear_arr[i] = loss_obs(test_input[i], H @ test_target[i]).item()
+    MSE_obs_linear_arr[i] = loss_obs(test_input[i], H.to(device) @ test_target[i]).item()
 MSE_obs_linear_avg = torch.mean(MSE_obs_linear_arr)
 MSE_obs_dB_avg = 10 * torch.log10(MSE_obs_linear_avg)
 print(f"Observation Noise Floor: {MSE_obs_dB_avg.item():.2f} [dB]")

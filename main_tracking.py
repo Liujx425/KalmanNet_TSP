@@ -135,6 +135,9 @@ print(H)
 ###################################
 dataFolderName = 'Simulations/Target_Tracking/data/'
 dataFileName = 'tracking_4x2_T100.pt'
+import os
+os.makedirs(dataFolderName, exist_ok=True)
+os.makedirs(path_results, exist_ok=True)
 print("\nGenerating data...")
 DataGen(args, sys_model, dataFolderName + dataFileName)
 print("Loading data...")

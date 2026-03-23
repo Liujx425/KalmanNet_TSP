@@ -268,9 +268,9 @@ class Pipeline_EKF:
         test_lengthMask=None):
         # Load model
         if load_model:
-            self.model = torch.load(load_model_path, map_location=self.device) 
+            self.model = torch.load(load_model_path, map_location=self.device, weights_only=False)
         else:
-            self.model = torch.load(path_results+'best-model.pt', map_location=self.device) 
+            self.model = torch.load(path_results+'best-model.pt', map_location=self.device, weights_only=False)
 
         self.N_T = test_input.shape[0]
         SysModel.T_test = test_input.size()[-1]

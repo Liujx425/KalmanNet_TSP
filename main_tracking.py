@@ -143,7 +143,7 @@ DataGen(args, sys_model, dataFolderName + dataFileName)
 print("Loading data...")
 [train_input, train_target, cv_input, cv_target, test_input, test_target,
  train_init, cv_init, test_init] = torch.load(
-    dataFolderName + dataFileName, map_location=device)
+    dataFolderName + dataFileName, map_location=device, weights_only=False)
 
 print(f"  Train set: {train_target.size()}")
 print(f"  CV set: {cv_target.size()}")

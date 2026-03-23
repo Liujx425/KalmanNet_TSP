@@ -50,14 +50,14 @@ H = torch.tensor([
 ###############################################
 ### Process noise Q and observation noise R ###
 ###############################################
-# Process noise: continuous white noise acceleration model
-# Q = q^2 * G * G^T where G = [dt^2/2, dt^2/2, dt, dt]^T
+# Process noise: discrete white noise acceleration model
+# Independent noise on position and velocity
 Q_structure = torch.tensor([
-    [delta_t**4 / 4, 0, delta_t**3 / 2, 0],
-    [0, delta_t**4 / 4, 0, delta_t**3 / 2],
-    [delta_t**3 / 2, 0, delta_t**2, 0],
-    [0, delta_t**3 / 2, 0, delta_t**2]
-]).float()
+    [delta_t**4 / 4, 0,              delta_t**3 / 2, 0],
+    [0,              delta_t**4 / 4, 0,              delta_t**3 / 2],
+    [delta_t**3 / 2, 0,              delta_t**2,     0],
+    [0,              delta_t**3 / 2, 0,              delta_t**2]
+]).float() + 1e-4 * torch.eye(m).float()  # regularize to ensure positive definiteness
 
 # Observation noise: isotropic position noise
 R_structure = torch.eye(n).float()
